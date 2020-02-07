@@ -1,0 +1,78 @@
+- Zookeeper:
+
+[ec2-user@ip-172-31-1-147 templates]$ sudo chef-client --local-mode --runlist 'recipe[zookeeper]'
+[2020-02-07T05:13:59+00:00] WARN: No config file found or specified on command line, using command line options.
+Starting Chef Client, version 14.7.17
+resolving cookbooks for run list: ["zookeeper"]
+Synchronizing Cookbooks:
+  - zookeeper (0.1.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+Converging 7 resources
+Recipe: zookeeper::install
+  * yum_package[java-1.8.0-openjdk] action install (up to date)
+  * directory[/opt/zookeeper] action create (up to date)
+  * remote_file[/opt/zookeeper/apache-zookeeper-3.5.6-bin.tar.gz] action create (up to date)
+  * bash[untar_tar_file] action run
+    - execute "bash"  "/tmp/chef-script20200207-4350-1qi316j"
+  * template[/opt/zookeeper/apache-zookeeper-3.5.6-bin/conf/zoo.cfg] action create (up to date)
+  * template[/usr/lib/systemd/system/zookeeper.service] action create (up to date)
+  * service[zookeeper] action enable (up to date)
+  * service[zookeeper] action start (up to date)
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 1/8 resources updated in 04 seconds
+[ec2-user@ip-172-31-1-147 templates]$ 
+
+
+- Time synchronization (Chrony package):
+
+[ec2-user@ip-172-31-1-147 recipes]$ sudo chef-client --local-mode --runlist 'recipe[chrony]'
+[2020-02-06T22:07:59+00:00] WARN: No config file found or specified on command line, using command line options.
+Starting Chef Client, version 14.7.17
+resolving cookbooks for run list: ["chrony"]
+Synchronizing Cookbooks:
+  - chrony (0.1.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+Converging 3 resources
+Recipe: chrony::install
+  * yum_package[chrony] action install (up to date)
+  * template[/etc/chrony.conf] action create (up to date)
+  * service[chronyd] action enable (up to date)
+  * service[chronyd] action start (up to date)
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 0/4 resources updated in 03 seconds
+[ec2-user@ip-172-31-1-147 recipes]$ 
+
+
+
+- Node_exporter:
+
+[ec2-user@ip-172-31-1-147 recipes]$ sudo chef-client --local-mode --runlist 'recipe[node_exporter]'
+[2020-02-06T22:04:09+00:00] WARN: No config file found or specified on command line, using command line options.
+Starting Chef Client, version 14.7.17
+resolving cookbooks for run list: ["node_exporter"]
+Synchronizing Cookbooks:
+  - node_exporter (0.1.0)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+Converging 5 resources
+Recipe: node_exporter::install
+  * directory[/opt/node_exporter] action create (up to date)
+  * remote_file[/opt/node_exporter/node_exporter-0.18.1.linux-amd64.tar.gz] action create (up to date)
+  * bash[untar_tar_file] action run
+    - execute "bash"  "/tmp/chef-script20200206-23130-9b6r3o"
+  * template[/etc/systemd/system/node_exporter.service] action create (up to date)
+  * service[node_exporter] action enable (up to date)
+  * service[node_exporter] action start
+    - start service service[node_exporter]
+
+Running handlers:
+Running handlers complete
+Chef Client finished, 2/6 resources updated in 02 seconds
+[ec2-user@ip-172-31-1-147 recipes]$ 
+
