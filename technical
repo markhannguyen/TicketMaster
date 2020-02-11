@@ -1,0 +1,32 @@
+1. What are the differences between Red Hat and Ubuntu?
+Here are some of the different:
+	a. Ubuntu is free to use while Red Hat is license.
+	b. Package manager extensions for Ubuntu is .deb and Red Hat is .rpm
+	c. Ubuntu focuses on desktop users and user-friendly and Red Hat focus mostly on Server plafform.
+
+2. Where are DNS resolvers configured in Red Hat? Ubuntu?
+	Red Hat and Ubuntu:  /etc/resolv.conf
+
+3. Where are IP addresses configured in Red Hat? Ubuntu?
+	Red Hat: /etc/sysconfig/network-scripts/ifcfg-eth0 (eth0).
+	Ubuntu: /etc/netplan/50-cloud-init.yaml or 01-netcfg.yaml
+
+4. How can you install packages on Red Hat? Ubuntu?
+	Red Hat: yum install package or rpm -ivh packname
+	Ubuntu: apt-get install package
+
+5. How can you review a log from the chrony service on RHEL 7? Ubuntu 14.04?
+	Redhad: check /var/log/messages.
+	Ubuntu: check /var/log/syslog
+
+6. (Optional Bonus) How would you do tasks 1 through 5 on CoreOS? Alpine Linux?
+I have install CoreOS before and never done anything on Alpine Linux.  I have to do a lots to research to get this done.
+
+7. How can you automate authentication and logging in to a RHEL 7 system?
+I would use bash script to automate this process.
+
+8. Describe a basic Docker workflow.
+The basic of Docker workflow is Docker client talks to Docker engine over port 2376.  The Docker client can run all of these command such as docker run, start, stop, and create. Then Docker engine translate these commands into Linux kernel so that it will provision container. During the provsion, the Docker engine will pull or push the image from registry. And using dockerfile to create a container.  
+
+9. How can you run Grafana (https://grafana.com) in Docker?
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
